@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include<stdlib.h>
+double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Size) {
+    int tsize=nums1Size+nums2Size;
+    int sorted[tsize];
+    int i,j;
+    for(i=0;i<nums1Size;i++)
+    {
+        sorted[i]=nums1[i];
+    }
+    for(i=0;i<nums2Size;i++){
+        sorted[i+nums1Size]=nums2[i];
+    }
+    for(i=0;i<tsize-1;i++)
+    {
+        for(j=0;j<tsize-i-1;j++)
+        {
+            if(sorted[j]>sorted[j+1])
+            {
+                int temp=sorted[j];
+                sorted[j]=sorted[j+1];
+                sorted[j+1]=temp;
+            }
+        }
+    }
+    int centre=tsize/2;
+    float median;
+    if(tsize%2!=0)
+        return sorted[centre];
+    else
+    {
+        double flag=sorted[centre]+sorted[centre-1];
+        return flag/2;
+    }
+
+}
+int main()
+{
+    int nums1,nums2,i;
+    printf("enter array 1 and 2 size:");
+    scanf("%d %d",&nums1,&nums2);
+    int n1[nums1],n2[nums2];
+    printf("enter array 1 elements:");
+    for(i=0;i<nums1;i++)
+    {
+        scanf("%d",&n1[i]);
+    }
+    printf("enter array 2 elements:");
+    for(i=0;i<nums2;i++)
+    {
+        scanf("%d",&n2[i]);
+    }
+    double median=findMedianSortedArrays(n1,nums1,n2,nums2);
+    printf("the median is %lf",median);
+}
