@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int n,i,maxe=0,maxs=0;
+    printf("enter the array size:");
+    scanf("%d",&n);
+    int a[n];
+    printf("enter arrray elements:");
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    for(i=0;i<n;i++)
+    {
+        maxe+=a[i];
+        if(maxe<0)
+        {
+           maxe=0;
+        }
+        if(maxe>maxs)
+        {
+            maxs=maxe;
+        }
+    }
+    printf("largest sum of contiguous subarrays in an array is:%d",maxs);
+    return 0;
+}
