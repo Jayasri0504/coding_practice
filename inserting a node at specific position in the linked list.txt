@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node
+{
+    int data;
+    struct node *link;
+};
+
+void main()
+{
+    struct node *head,*current;
+    head=(struct node*)malloc(sizeof(struct node));
+    head->data=45;
+    head->link=NULL;
+
+    current=(struct node*)malloc(sizeof(struct node));
+    current->data=55;
+    current->link=NULL;
+    head->link=current;
+
+    current=(struct node*)malloc(sizeof(struct node));
+    current->data=65;
+    current->link=NULL;
+    head->link->link=current;
+//for printing data
+    struct node *ptr=NULL;
+    ptr=head;
+    while(ptr!=NULL)
+    {
+        printf("%d ",ptr->data);
+        ptr=ptr->link;
+    }
+//for insertion at middle
+   struct node *p=NULL,*temp;
+   int n,x;
+   printf("enter a position to insert");
+   scanf("%d",&n);
+   printf("enter a element to insert");
+   scanf("%d",&x);
+   p=head;
+   temp=(struct node*)malloc(sizeof(struct node));
+   temp->data=x;
+   temp->link=NULL;
+   int ct=1;
+   while(p!=NULL)
+   {
+       if(ct==n+1)
+       {
+           temp->link=p->link;
+           p->link=temp;
+           break;
+       }
+       else
+       {
+           p=p->link;
+           ct++;
+       }
+   }
+    struct node *p1=NULL;
+    p1=head;
+    printf("after insertion:");
+    while(p1!=NULL)
+    {
+        printf("%d ",p1->data);
+        p1=p1->link;
+    }
+
+}
