@@ -1,0 +1,70 @@
+import java.io.*;
+import java.util.*;
+class Node{
+    String data;
+    Node next;
+    Node(String data){
+        this.data=data;
+        this.next=null;
+    }
+}
+class Queue{
+    Node front=null,rear=null;
+    public void enqueue(String data){
+        Node nn=new Node(data);
+        if(front==null){
+            front=rear=nn;
+        }
+        else{
+            rear.next=nn;
+            rear=nn;
+        }
+    }
+    public void dequeue(){
+        if(front==null){
+            System.out.println("Queue is empty.");
+        }
+        else{
+            System.out.println("Processed Ticket: "+front.data);
+            front=front.next;
+        }
+    }
+    public void display(){
+        if(front==null){
+            System.out.println("Queue is empty.");
+        }
+        else{
+            Node temp=front;
+            System.out.print("Current Queue: ");
+            while(temp!=null){
+                System.out.print(temp.data+" ");
+                temp=temp.next;
+            }
+            System.out.println();
+        }
+    }
+}
+public class Solution {
+
+    public static void main(String[] args) {
+       Scanner sc=new Scanner(System.in);
+       Queue ob=new Queue();
+       int n=sc.nextInt();
+       for(int i=0;i<n;i++){
+           String s=sc.next();
+           if(s.equals("ENQUEUE")){
+               String x=sc.next();
+               ob.enqueue(x);
+           }
+           else if(s.equals("DEQUEUE")){
+               ob.dequeue();
+           }
+           else if(s.equals("DISPLAY")){
+               ob.display();
+           }
+           else{
+               System.out.println("Invalid command.");
+           }
+       }
+    }
+}
