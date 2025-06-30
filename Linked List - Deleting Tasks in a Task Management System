@@ -1,0 +1,63 @@
+import java.io.*;
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+    Node(int data){
+        this.data=data;
+        this.next=null;
+    }
+}
+class LL{
+    Node head,temp;
+    public void insert(int n){
+        Node nn = new Node(n);
+        if(head==null){
+            head=nn;
+            temp=nn;
+        }
+        else{
+            temp.next=nn;
+            temp=nn;
+        }
+    }
+    public void display(){
+        Node temp=head;
+        if(head==null){
+            System.out.print("List is empty");
+            return;
+        }
+        while(temp!=null){
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        }
+    }
+    public void delete(int k){
+       
+        for(int i=1 ;i<=k;i++){
+            Node temp=head;
+            if(temp.next==null){
+                head=null;
+                return;
+            }
+            head=temp.next;
+            temp=null;
+        }
+    }
+}
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner (System.in);
+        int n=sc.nextInt();
+        LL ob=new LL();
+        while(n-- > 0){
+            int a =sc.nextInt();
+            ob.insert(a);
+        }
+        int k=sc.nextInt();
+        ob.delete(k);
+        ob.display();
+    }
+}
