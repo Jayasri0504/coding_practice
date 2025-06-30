@@ -1,0 +1,68 @@
+import java.io.*;
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+    Node(int data){
+        this.data=data;
+        this.next=null;
+    }
+}
+class LL{
+    Node head,temp;
+    public void insertatend(int n){
+        Node nn = new Node(n);
+        if(head==null){
+            head=nn;
+            temp=nn;
+        }
+        else{
+          temp.next=nn;
+          temp=nn;
+        }
+    }
+    public void display(){
+        Node temp=head;
+        if(head==null){
+            System.out.print("List is empty");
+            return;
+        }
+        while(temp!=null){
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        }
+    }
+    public void insertatpos(int k, int x){
+        Node nn=new Node(x);
+        if(k==1){
+            nn.next=head;
+            head=nn;
+            return;
+        }
+        Node temp=head;
+        for(int i=1;i<k-1;i++){
+            temp=temp.next;
+        }
+        nn.next=temp.next;
+        temp.next=nn;
+    }
+}
+
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner (System.in);
+        int n=sc.nextInt();
+        LL ob=new LL();
+        while(n-- > 0){
+            int a =sc.nextInt();
+            ob.insertatend(a);
+        }
+        int k=sc.nextInt();
+        int x=sc.nextInt();
+        ob.insertatpos(k,x);
+        ob.display();
+        
+    }
+}
